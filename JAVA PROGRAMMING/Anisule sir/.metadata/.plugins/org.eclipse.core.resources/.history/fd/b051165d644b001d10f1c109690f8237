@@ -1,0 +1,15 @@
+
+public class DataType {
+	public static void main(String[] args) {
+		int i = 10;
+		//float f = 12.2;
+		double d =122;
+		char ch = 'a';
+		short s ;
+		boolean b = true;
+		
+		System.out.println("Boolean:"+b);
+		
+		
+	}
+}

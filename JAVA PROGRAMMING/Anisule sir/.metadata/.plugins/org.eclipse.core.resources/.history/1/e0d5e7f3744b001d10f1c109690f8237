@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class ArraySum {
+public static void main(String[] args) {
+	Scanner arr = new Scanner(System.in);
+	int n, sum = 0;
+	n = arr.nextInt();
+	int []a = new int[n];
+	
+	a[0] = 1;
+	a[1] = 1;
+	
+	for(int i = 1; i <= n-2; i++)
+	{
+		a[i+1] = a[i] + a[i-1];
+	}
+	
+	for(int i = 0; i < 5; i++)
+	{
+		sum = sum + a[i];
+	}
+	
+	System.out.println(sum);
+}
+}

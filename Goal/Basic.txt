@@ -1,0 +1,13 @@
+1.a string gets an input from a string first space separeted portion. Where as getline(cin, str); take the whole line of input where the 	line is space separated upto next line. Means it takes input a whole line not a paragraph.
+
+
+
+
+
+--------------------------Time Complexity---------------------
+Rate at which the time taken increases with respect to the input size
+
+Time Complexity measured:::
+1.Computed in worst case scenario
+2.Avoid constant
+3.Avoid lower values

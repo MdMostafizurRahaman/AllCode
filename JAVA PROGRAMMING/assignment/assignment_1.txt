@@ -1,0 +1,16 @@
+1. The class Movie is stated below. An instance of class Movie represents a film. This class has the following three class variables:
+
+title, which is a String representing the title of the movie
+studio, which is a String representing the studio that made the movie
+rating, which is a String representing the rating of the movie (i.e. PG­13, R, etc)
+Now consider the following tasks - 
+
+Write a constructor for the class Movie, which takes a String representing the title of the movie, a String representing the studio, and a String representing the rating as its arguments, and sets the respective class variables to these values.
+Write a second constructor for the class Movie, which takes a String representing the title of the movie and a String representing the studio as its arguments, and sets the respective class variables to these values, while the class variable rating is set to "PG".
+Write a method getPG, which takes an array of base type Movie as its argument, and returns a new array of only those movies in the input array with a rating of "PG". You may assume the input array is full of Movie instances. The returned array need not be full.
+Write a piece of code that creates an instance of the class Movie with the title “Casino Royale”, the studio “Eon Productions”, and the rating “PG­13”.
+
+2. Create a class TicTacToe that will enable you to write a program to play TicTac-Toe. The class contains a private 3-by-3 two-dimensional array. Use class variables to represent
+the value in each cell of the array. These values should be named X, O and EMPTY (for a position that does not contain an X or an O). The constructor should initialize the board elements to EMPTY. Allow two human players. Wherever the first player moves, place an X in the specified square, and place an O wherever the second player moves. Each move must be to an empty square. After each move, determine whether the game has been won and whether it’s a draw. Allow the player to specify whether he or she wants to go first or second. 
+
+Bonus: Modify your program so that the computer makes the moves for one of the players. 

@@ -1,0 +1,21 @@
+
+public class DataType {
+	public static void main(String[] args) {
+		int i = 10;
+		float f = 12.2f;
+		//float datatype er jonno float data er sesh e f add krte hoi
+		double d =122;
+		char ch = 'a';
+		short s = 1281 ;
+		boolean b = true;
+		
+		System.out.println("Boolean:"+b);
+		System.out.println("Integer:"+i);
+		System.out.println("Float:"+f);
+		System.out.println("Short:"+s);
+		System.out.println("Character:" +ch);
+		System.out.println("Double:"+d);
+		
+		
+	}
+}

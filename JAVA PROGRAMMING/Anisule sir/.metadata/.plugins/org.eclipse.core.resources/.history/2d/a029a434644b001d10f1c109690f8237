@@ -1,0 +1,10 @@
+
+public class DataType {
+	public static void main(String[] args) {
+		int num = 10;
+		float f = 12.2;
+		double d =122;
+		
+		
+	}
+}

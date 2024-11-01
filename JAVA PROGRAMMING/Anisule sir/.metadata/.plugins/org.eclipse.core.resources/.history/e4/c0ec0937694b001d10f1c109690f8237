@@ -1,0 +1,8 @@
+import java.util.Scanner;
+
+public class Operator {
+public static void main(String[] args) {
+	int num1, num 2;
+	Scanner num1 = new Scanner(System.in);
+}
+}

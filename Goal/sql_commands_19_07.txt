@@ -1,0 +1,1988 @@
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Tue Jul 25 12:04:04 2023
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> connect system
+Enter password:
+Connected.
+SQL> alter user HR identified by iit123 account unlock;
+
+User altered.
+
+SQL> connect HR
+Enter password:
+Connected.
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+REGIONS                        TABLE
+COUNTRIES                      TABLE
+LOCATIONS                      TABLE
+DEPARTMENTS                    TABLE
+JOBS                           TABLE
+EMPLOYEES                      TABLE
+JOB_HISTORY                    TABLE
+EMP_DETAILS_VIEW               VIEW
+
+8 rows selected.
+
+SQL> describe jobs;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ JOB_ID                                    NOT NULL VARCHAR2(10)
+ JOB_TITLE                                 NOT NULL VARCHAR2(35)
+ MIN_SALARY                                         NUMBER(6)
+ MAX_SALARY                                         NUMBER(6)
+
+SQL> select job_id from jobs;
+
+JOB_ID
+----------
+AC_ACCOUNT
+AC_MGR
+AD_ASST
+AD_PRES
+AD_VP
+FI_ACCOUNT
+FI_MGR
+HR_REP
+IT_PROG
+MK_MAN
+MK_REP
+
+JOB_ID
+----------
+PR_REP
+PU_CLERK
+PU_MAN
+SA_MAN
+SA_REP
+SH_CLERK
+ST_CLERK
+ST_MAN
+
+19 rows selected.
+
+SQL> select job_id, min_salary from jobs;
+
+JOB_ID     MIN_SALARY
+---------- ----------
+AD_PRES         20000
+AD_VP           15000
+AD_ASST          3000
+FI_MGR           8200
+FI_ACCOUNT       4200
+AC_MGR           8200
+AC_ACCOUNT       4200
+SA_MAN          10000
+SA_REP           6000
+PU_MAN           8000
+PU_CLERK         2500
+
+JOB_ID     MIN_SALARY
+---------- ----------
+ST_MAN           5500
+ST_CLERK         2000
+SH_CLERK         2500
+IT_PROG          4000
+MK_MAN           9000
+MK_REP           4000
+HR_REP           4000
+PR_REP           4500
+
+19 rows selected.
+
+SQL> select job_id, 12*min_salary from jobs;
+
+JOB_ID     12*MIN_SALARY
+---------- -------------
+AD_PRES           240000
+AD_VP             180000
+AD_ASST            36000
+FI_MGR             98400
+FI_ACCOUNT         50400
+AC_MGR             98400
+AC_ACCOUNT         50400
+SA_MAN            120000
+SA_REP             72000
+PU_MAN             96000
+PU_CLERK           30000
+
+JOB_ID     12*MIN_SALARY
+---------- -------------
+ST_MAN             66000
+ST_CLERK           24000
+SH_CLERK           30000
+IT_PROG            48000
+MK_MAN            108000
+MK_REP             48000
+HR_REP             48000
+PR_REP             54000
+
+19 rows selected.
+
+SQL> select job_id,min_salary,  12*min_salary from jobs;
+
+JOB_ID     MIN_SALARY 12*MIN_SALARY
+---------- ---------- -------------
+AD_PRES         20000        240000
+AD_VP           15000        180000
+AD_ASST          3000         36000
+FI_MGR           8200         98400
+FI_ACCOUNT       4200         50400
+AC_MGR           8200         98400
+AC_ACCOUNT       4200         50400
+SA_MAN          10000        120000
+SA_REP           6000         72000
+PU_MAN           8000         96000
+PU_CLERK         2500         30000
+
+JOB_ID     MIN_SALARY 12*MIN_SALARY
+---------- ---------- -------------
+ST_MAN           5500         66000
+ST_CLERK         2000         24000
+SH_CLERK         2500         30000
+IT_PROG          4000         48000
+MK_MAN           9000        108000
+MK_REP           4000         48000
+HR_REP           4000         48000
+PR_REP           4500         54000
+
+19 rows selected.
+
+SQL> select job_id,min_salary,  12*min_salary Annual from jobs;
+
+JOB_ID     MIN_SALARY     ANNUAL
+---------- ---------- ----------
+AD_PRES         20000     240000
+AD_VP           15000     180000
+AD_ASST          3000      36000
+FI_MGR           8200      98400
+FI_ACCOUNT       4200      50400
+AC_MGR           8200      98400
+AC_ACCOUNT       4200      50400
+SA_MAN          10000     120000
+SA_REP           6000      72000
+PU_MAN           8000      96000
+PU_CLERK         2500      30000
+
+JOB_ID     MIN_SALARY     ANNUAL
+---------- ---------- ----------
+ST_MAN           5500      66000
+ST_CLERK         2000      24000
+SH_CLERK         2500      30000
+IT_PROG          4000      48000
+MK_MAN           9000     108000
+MK_REP           4000      48000
+HR_REP           4000      48000
+PR_REP           4500      54000
+
+19 rows selected.
+
+SQL> select job_id,min_salary,  12*min_salary "Annual Salary" from jobs;
+
+JOB_ID     MIN_SALARY Annual Salary
+---------- ---------- -------------
+AD_PRES         20000        240000
+AD_VP           15000        180000
+AD_ASST          3000         36000
+FI_MGR           8200         98400
+FI_ACCOUNT       4200         50400
+AC_MGR           8200         98400
+AC_ACCOUNT       4200         50400
+SA_MAN          10000        120000
+SA_REP           6000         72000
+PU_MAN           8000         96000
+PU_CLERK         2500         30000
+
+JOB_ID     MIN_SALARY Annual Salary
+---------- ---------- -------------
+ST_MAN           5500         66000
+ST_CLERK         2000         24000
+SH_CLERK         2500         30000
+IT_PROG          4000         48000
+MK_MAN           9000        108000
+MK_REP           4000         48000
+HR_REP           4000         48000
+PR_REP           4500         54000
+
+19 rows selected.
+
+SQL> describe departments;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPARTMENT_ID                             NOT NULL NUMBER(4)
+ DEPARTMENT_NAME                           NOT NULL VARCHAR2(30)
+ MANAGER_ID                                         NUMBER(6)
+ LOCATION_ID                                        NUMBER(4)
+
+SQL> select depertment_name;
+select depertment_name
+                     *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select department_name;
+select department_name
+                     *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select department_name from departments;
+
+DEPARTMENT_NAME
+------------------------------
+Administration
+Marketing
+Purchasing
+Human Resources
+Shipping
+IT
+Public Relations
+Sales
+Executive
+Finance
+Accounting
+
+DEPARTMENT_NAME
+------------------------------
+Treasury
+Corporate Tax
+Control And Credit
+Shareholder Services
+Benefits
+Manufacturing
+Construction
+Contracting
+Operations
+IT Support
+NOC
+
+DEPARTMENT_NAME
+------------------------------
+IT Helpdesk
+Government Sales
+Retail Sales
+Recruiting
+Payroll
+
+27 rows selected.
+
+SQL> describe employees;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                               NOT NULL NUMBER(6)
+ FIRST_NAME                                         VARCHAR2(20)
+ LAST_NAME                                 NOT NULL VARCHAR2(25)
+ EMAIL                                     NOT NULL VARCHAR2(25)
+ PHONE_NUMBER                                       VARCHAR2(20)
+ HIRE_DATE                                 NOT NULL DATE
+ JOB_ID                                    NOT NULL VARCHAR2(10)
+ SALARY                                             NUMBER(8,2)
+ COMMISSION_PCT                                     NUMBER(2,2)
+ MANAGER_ID                                         NUMBER(6)
+ DEPARTMENT_ID                                      NUMBER(4)
+
+SQL> select salary, 12*salary "Annual" from employees;
+
+    SALARY     Annual
+---------- ----------
+     24000     288000
+     17000     204000
+     17000     204000
+      9000     108000
+      6000      72000
+      4800      57600
+      4800      57600
+      4200      50400
+     12000     144000
+      9000     108000
+      8200      98400
+
+    SALARY     Annual
+---------- ----------
+      7700      92400
+      7800      93600
+      6900      82800
+     11000     132000
+      3100      37200
+      2900      34800
+      2800      33600
+      2600      31200
+      2500      30000
+      8000      96000
+      8200      98400
+
+    SALARY     Annual
+---------- ----------
+      7900      94800
+      6500      78000
+      5800      69600
+      3200      38400
+      2700      32400
+      2400      28800
+      2200      26400
+      3300      39600
+      2800      33600
+      2500      30000
+      2100      25200
+
+    SALARY     Annual
+---------- ----------
+      3300      39600
+      2900      34800
+      2400      28800
+      2200      26400
+      3600      43200
+      3200      38400
+      2700      32400
+      2500      30000
+      3500      42000
+      3100      37200
+      2600      31200
+
+    SALARY     Annual
+---------- ----------
+      2500      30000
+     14000     168000
+     13500     162000
+     12000     144000
+     11000     132000
+     10500     126000
+     10000     120000
+      9500     114000
+      9000     108000
+      8000      96000
+      7500      90000
+
+    SALARY     Annual
+---------- ----------
+      7000      84000
+     10000     120000
+      9500     114000
+      9000     108000
+      8000      96000
+      7500      90000
+      7000      84000
+     10500     126000
+      9500     114000
+      7200      86400
+      6800      81600
+
+    SALARY     Annual
+---------- ----------
+      6400      76800
+      6200      74400
+     11500     138000
+     10000     120000
+      9600     115200
+      7400      88800
+      7300      87600
+      6100      73200
+     11000     132000
+      8800     105600
+      8600     103200
+
+    SALARY     Annual
+---------- ----------
+      8400     100800
+      7000      84000
+      6200      74400
+      3200      38400
+      3100      37200
+      2500      30000
+      2800      33600
+      4200      50400
+      4100      49200
+      3400      40800
+      3000      36000
+
+    SALARY     Annual
+---------- ----------
+      3800      45600
+      3600      43200
+      2900      34800
+      2500      30000
+      4000      48000
+      3900      46800
+      3200      38400
+      2800      33600
+      3100      37200
+      3000      36000
+      2600      31200
+
+    SALARY     Annual
+---------- ----------
+      2600      31200
+      4400      52800
+     13000     156000
+      6000      72000
+      6500      78000
+     10000     120000
+     12000     144000
+      8300      99600
+
+107 rows selected.
+
+SQL> select last_name, salary, 12*salary "Annual" from employees;
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+King                           24000     288000
+Kochhar                        17000     204000
+De Haan                        17000     204000
+Hunold                          9000     108000
+Ernst                           6000      72000
+Austin                          4800      57600
+Pataballa                       4800      57600
+Lorentz                         4200      50400
+Greenberg                      12000     144000
+Faviet                          9000     108000
+Chen                            8200      98400
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Sciarra                         7700      92400
+Urman                           7800      93600
+Popp                            6900      82800
+Raphaely                       11000     132000
+Khoo                            3100      37200
+Baida                           2900      34800
+Tobias                          2800      33600
+Himuro                          2600      31200
+Colmenares                      2500      30000
+Weiss                           8000      96000
+Fripp                           8200      98400
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Kaufling                        7900      94800
+Vollman                         6500      78000
+Mourgos                         5800      69600
+Nayer                           3200      38400
+Mikkilineni                     2700      32400
+Landry                          2400      28800
+Markle                          2200      26400
+Bissot                          3300      39600
+Atkinson                        2800      33600
+Marlow                          2500      30000
+Olson                           2100      25200
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Mallin                          3300      39600
+Rogers                          2900      34800
+Gee                             2400      28800
+Philtanker                      2200      26400
+Ladwig                          3600      43200
+Stiles                          3200      38400
+Seo                             2700      32400
+Patel                           2500      30000
+Rajs                            3500      42000
+Davies                          3100      37200
+Matos                           2600      31200
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Vargas                          2500      30000
+Russell                        14000     168000
+Partners                       13500     162000
+Errazuriz                      12000     144000
+Cambrault                      11000     132000
+Zlotkey                        10500     126000
+Tucker                         10000     120000
+Bernstein                       9500     114000
+Hall                            9000     108000
+Olsen                           8000      96000
+Cambrault                       7500      90000
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Tuvault                         7000      84000
+King                           10000     120000
+Sully                           9500     114000
+McEwen                          9000     108000
+Smith                           8000      96000
+Doran                           7500      90000
+Sewall                          7000      84000
+Vishney                        10500     126000
+Greene                          9500     114000
+Marvins                         7200      86400
+Lee                             6800      81600
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Ande                            6400      76800
+Banda                           6200      74400
+Ozer                           11500     138000
+Bloom                          10000     120000
+Fox                             9600     115200
+Smith                           7400      88800
+Bates                           7300      87600
+Kumar                           6100      73200
+Abel                           11000     132000
+Hutton                          8800     105600
+Taylor                          8600     103200
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Livingston                      8400     100800
+Grant                           7000      84000
+Johnson                         6200      74400
+Taylor                          3200      38400
+Fleaur                          3100      37200
+Sullivan                        2500      30000
+Geoni                           2800      33600
+Sarchand                        4200      50400
+Bull                            4100      49200
+Dellinger                       3400      40800
+Cabrio                          3000      36000
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Chung                           3800      45600
+Dilly                           3600      43200
+Gates                           2900      34800
+Perkins                         2500      30000
+Bell                            4000      48000
+Everett                         3900      46800
+McCain                          3200      38400
+Jones                           2800      33600
+Walsh                           3100      37200
+Feeney                          3000      36000
+OConnell                        2600      31200
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Grant                           2600      31200
+Whalen                          4400      52800
+Hartstein                      13000     156000
+Fay                             6000      72000
+Mavris                          6500      78000
+Baer                           10000     120000
+Higgins                        12000     144000
+Gietz                           8300      99600
+
+107 rows selected.
+
+SQL> select last_name, salary, 12*salary+12*salary*commission_pct "Annual" from employees;
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+King                           24000
+Kochhar                        17000
+De Haan                        17000
+Hunold                          9000
+Ernst                           6000
+Austin                          4800
+Pataballa                       4800
+Lorentz                         4200
+Greenberg                      12000
+Faviet                          9000
+Chen                            8200
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Sciarra                         7700
+Urman                           7800
+Popp                            6900
+Raphaely                       11000
+Khoo                            3100
+Baida                           2900
+Tobias                          2800
+Himuro                          2600
+Colmenares                      2500
+Weiss                           8000
+Fripp                           8200
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Kaufling                        7900
+Vollman                         6500
+Mourgos                         5800
+Nayer                           3200
+Mikkilineni                     2700
+Landry                          2400
+Markle                          2200
+Bissot                          3300
+Atkinson                        2800
+Marlow                          2500
+Olson                           2100
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Mallin                          3300
+Rogers                          2900
+Gee                             2400
+Philtanker                      2200
+Ladwig                          3600
+Stiles                          3200
+Seo                             2700
+Patel                           2500
+Rajs                            3500
+Davies                          3100
+Matos                           2600
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Vargas                          2500
+Russell                        14000     235200
+Partners                       13500     210600
+Errazuriz                      12000     187200
+Cambrault                      11000     171600
+Zlotkey                        10500     151200
+Tucker                         10000     156000
+Bernstein                       9500     142500
+Hall                            9000     135000
+Olsen                           8000     115200
+Cambrault                       7500     108000
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Tuvault                         7000      96600
+King                           10000     162000
+Sully                           9500     153900
+McEwen                          9000     145800
+Smith                           8000     124800
+Doran                           7500     117000
+Sewall                          7000     105000
+Vishney                        10500     157500
+Greene                          9500     131100
+Marvins                         7200      95040
+Lee                             6800      89760
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Ande                            6400      84480
+Banda                           6200      81840
+Ozer                           11500     172500
+Bloom                          10000     144000
+Fox                             9600     138240
+Smith                           7400     102120
+Bates                           7300     100740
+Kumar                           6100      80520
+Abel                           11000     171600
+Hutton                          8800     132000
+Taylor                          8600     123840
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Livingston                      8400     120960
+Grant                           7000      96600
+Johnson                         6200      81840
+Taylor                          3200
+Fleaur                          3100
+Sullivan                        2500
+Geoni                           2800
+Sarchand                        4200
+Bull                            4100
+Dellinger                       3400
+Cabrio                          3000
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Chung                           3800
+Dilly                           3600
+Gates                           2900
+Perkins                         2500
+Bell                            4000
+Everett                         3900
+McCain                          3200
+Jones                           2800
+Walsh                           3100
+Feeney                          3000
+OConnell                        2600
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Grant                           2600
+Whalen                          4400
+Hartstein                      13000
+Fay                             6000
+Mavris                          6500
+Baer                           10000
+Higgins                        12000
+Gietz                           8300
+
+107 rows selected.
+
+SQL> select last_name, commission_pct from employees;
+
+LAST_NAME                 COMMISSION_PCT
+------------------------- --------------
+King
+Kochhar
+De Haan
+Hunold
+Ernst
+Austin
+Pataballa
+Lorentz
+Greenberg
+Faviet
+Chen
+
+LAST_NAME                 COMMISSION_PCT
+------------------------- --------------
+Sciarra
+Urman
+Popp
+Raphaely
+Khoo
+Baida
+Tobias
+Himuro
+Colmenares
+Weiss
+Fripp
+
+LAST_NAME                 COMMISSION_PCT
+------------------------- --------------
+Kaufling
+Vollman
+Mourgos
+Nayer
+Mikkilineni
+Landry
+Markle
+Bissot
+Atkinson
+Marlow
+Olson
+
+LAST_NAME                 COMMISSION_PCT
+------------------------- --------------
+Mallin
+Rogers
+Gee
+Philtanker
+Ladwig
+Stiles
+Seo
+Patel
+Rajs
+Davies
+Matos
+
+LAST_NAME                 COMMISSION_PCT
+------------------------- --------------
+Vargas
+Russell                               .4
+Partners                              .3
+Errazuriz                             .3
+Cambrault                             .3
+Zlotkey                               .2
+Tucker                                .3
+Bernstein                            .25
+Hall                                 .25
+Olsen                                 .2
+Cambrault                             .2
+
+LAST_NAME                 COMMISSION_PCT
+------------------------- --------------
+Tuvault                              .15
+King                                 .35
+Sully                                .35
+McEwen                               .35
+Smith                                 .3
+Doran                                 .3
+Sewall                               .25
+Vishney                              .25
+Greene                               .15
+Marvins                               .1
+Lee                                   .1
+
+LAST_NAME                 COMMISSION_PCT
+------------------------- --------------
+Ande                                  .1
+Banda                                 .1
+Ozer                                 .25
+Bloom                                 .2
+Fox                                   .2
+Smith                                .15
+Bates                                .15
+Kumar                                 .1
+Abel                                  .3
+Hutton                               .25
+Taylor                                .2
+
+LAST_NAME                 COMMISSION_PCT
+------------------------- --------------
+Livingston                            .2
+Grant                                .15
+Johnson                               .1
+Taylor
+Fleaur
+Sullivan
+Geoni
+Sarchand
+Bull
+Dellinger
+Cabrio
+
+LAST_NAME                 COMMISSION_PCT
+------------------------- --------------
+Chung
+Dilly
+Gates
+Perkins
+Bell
+Everett
+McCain
+Jones
+Walsh
+Feeney
+OConnell
+
+LAST_NAME                 COMMISSION_PCT
+------------------------- --------------
+Grant
+Whalen
+Hartstein
+Fay
+Mavris
+Baer
+Higgins
+Gietz
+
+107 rows selected.
+
+SQL> select last_name, nvl(commission_pct,0) from employees;
+
+LAST_NAME                 NVL(COMMISSION_PCT,0)
+------------------------- ---------------------
+King                                          0
+Kochhar                                       0
+De Haan                                       0
+Hunold                                        0
+Ernst                                         0
+Austin                                        0
+Pataballa                                     0
+Lorentz                                       0
+Greenberg                                     0
+Faviet                                        0
+Chen                                          0
+
+LAST_NAME                 NVL(COMMISSION_PCT,0)
+------------------------- ---------------------
+Sciarra                                       0
+Urman                                         0
+Popp                                          0
+Raphaely                                      0
+Khoo                                          0
+Baida                                         0
+Tobias                                        0
+Himuro                                        0
+Colmenares                                    0
+Weiss                                         0
+Fripp                                         0
+
+LAST_NAME                 NVL(COMMISSION_PCT,0)
+------------------------- ---------------------
+Kaufling                                      0
+Vollman                                       0
+Mourgos                                       0
+Nayer                                         0
+Mikkilineni                                   0
+Landry                                        0
+Markle                                        0
+Bissot                                        0
+Atkinson                                      0
+Marlow                                        0
+Olson                                         0
+
+LAST_NAME                 NVL(COMMISSION_PCT,0)
+------------------------- ---------------------
+Mallin                                        0
+Rogers                                        0
+Gee                                           0
+Philtanker                                    0
+Ladwig                                        0
+Stiles                                        0
+Seo                                           0
+Patel                                         0
+Rajs                                          0
+Davies                                        0
+Matos                                         0
+
+LAST_NAME                 NVL(COMMISSION_PCT,0)
+------------------------- ---------------------
+Vargas                                        0
+Russell                                      .4
+Partners                                     .3
+Errazuriz                                    .3
+Cambrault                                    .3
+Zlotkey                                      .2
+Tucker                                       .3
+Bernstein                                   .25
+Hall                                        .25
+Olsen                                        .2
+Cambrault                                    .2
+
+LAST_NAME                 NVL(COMMISSION_PCT,0)
+------------------------- ---------------------
+Tuvault                                     .15
+King                                        .35
+Sully                                       .35
+McEwen                                      .35
+Smith                                        .3
+Doran                                        .3
+Sewall                                      .25
+Vishney                                     .25
+Greene                                      .15
+Marvins                                      .1
+Lee                                          .1
+
+LAST_NAME                 NVL(COMMISSION_PCT,0)
+------------------------- ---------------------
+Ande                                         .1
+Banda                                        .1
+Ozer                                        .25
+Bloom                                        .2
+Fox                                          .2
+Smith                                       .15
+Bates                                       .15
+Kumar                                        .1
+Abel                                         .3
+Hutton                                      .25
+Taylor                                       .2
+
+LAST_NAME                 NVL(COMMISSION_PCT,0)
+------------------------- ---------------------
+Livingston                                   .2
+Grant                                       .15
+Johnson                                      .1
+Taylor                                        0
+Fleaur                                        0
+Sullivan                                      0
+Geoni                                         0
+Sarchand                                      0
+Bull                                          0
+Dellinger                                     0
+Cabrio                                        0
+
+LAST_NAME                 NVL(COMMISSION_PCT,0)
+------------------------- ---------------------
+Chung                                         0
+Dilly                                         0
+Gates                                         0
+Perkins                                       0
+Bell                                          0
+Everett                                       0
+McCain                                        0
+Jones                                         0
+Walsh                                         0
+Feeney                                        0
+OConnell                                      0
+
+LAST_NAME                 NVL(COMMISSION_PCT,0)
+------------------------- ---------------------
+Grant                                         0
+Whalen                                        0
+Hartstein                                     0
+Fay                                           0
+Mavris                                        0
+Baer                                          0
+Higgins                                       0
+Gietz                                         0
+
+107 rows selected.
+
+SQL> select last_name, salary, 12*salary+12*salary*nvl(commission_pct ,0) "Annual" from employees;
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+King                           24000     288000
+Kochhar                        17000     204000
+De Haan                        17000     204000
+Hunold                          9000     108000
+Ernst                           6000      72000
+Austin                          4800      57600
+Pataballa                       4800      57600
+Lorentz                         4200      50400
+Greenberg                      12000     144000
+Faviet                          9000     108000
+Chen                            8200      98400
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Sciarra                         7700      92400
+Urman                           7800      93600
+Popp                            6900      82800
+Raphaely                       11000     132000
+Khoo                            3100      37200
+Baida                           2900      34800
+Tobias                          2800      33600
+Himuro                          2600      31200
+Colmenares                      2500      30000
+Weiss                           8000      96000
+Fripp                           8200      98400
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Kaufling                        7900      94800
+Vollman                         6500      78000
+Mourgos                         5800      69600
+Nayer                           3200      38400
+Mikkilineni                     2700      32400
+Landry                          2400      28800
+Markle                          2200      26400
+Bissot                          3300      39600
+Atkinson                        2800      33600
+Marlow                          2500      30000
+Olson                           2100      25200
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Mallin                          3300      39600
+Rogers                          2900      34800
+Gee                             2400      28800
+Philtanker                      2200      26400
+Ladwig                          3600      43200
+Stiles                          3200      38400
+Seo                             2700      32400
+Patel                           2500      30000
+Rajs                            3500      42000
+Davies                          3100      37200
+Matos                           2600      31200
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Vargas                          2500      30000
+Russell                        14000     235200
+Partners                       13500     210600
+Errazuriz                      12000     187200
+Cambrault                      11000     171600
+Zlotkey                        10500     151200
+Tucker                         10000     156000
+Bernstein                       9500     142500
+Hall                            9000     135000
+Olsen                           8000     115200
+Cambrault                       7500     108000
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Tuvault                         7000      96600
+King                           10000     162000
+Sully                           9500     153900
+McEwen                          9000     145800
+Smith                           8000     124800
+Doran                           7500     117000
+Sewall                          7000     105000
+Vishney                        10500     157500
+Greene                          9500     131100
+Marvins                         7200      95040
+Lee                             6800      89760
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Ande                            6400      84480
+Banda                           6200      81840
+Ozer                           11500     172500
+Bloom                          10000     144000
+Fox                             9600     138240
+Smith                           7400     102120
+Bates                           7300     100740
+Kumar                           6100      80520
+Abel                           11000     171600
+Hutton                          8800     132000
+Taylor                          8600     123840
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Livingston                      8400     120960
+Grant                           7000      96600
+Johnson                         6200      81840
+Taylor                          3200      38400
+Fleaur                          3100      37200
+Sullivan                        2500      30000
+Geoni                           2800      33600
+Sarchand                        4200      50400
+Bull                            4100      49200
+Dellinger                       3400      40800
+Cabrio                          3000      36000
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Chung                           3800      45600
+Dilly                           3600      43200
+Gates                           2900      34800
+Perkins                         2500      30000
+Bell                            4000      48000
+Everett                         3900      46800
+McCain                          3200      38400
+Jones                           2800      33600
+Walsh                           3100      37200
+Feeney                          3000      36000
+OConnell                        2600      31200
+
+LAST_NAME                     SALARY     Annual
+------------------------- ---------- ----------
+Grant                           2600      31200
+Whalen                          4400      52800
+Hartstein                      13000     156000
+Fay                             6000      72000
+Mavris                          6500      78000
+Baer                           10000     120000
+Higgins                        12000     144000
+Gietz                           8300      99600
+
+107 rows selected.
+
+SQL> select last_name || ' er salary is ' || salary from employees;
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+King er salary is 24000
+Kochhar er salary is 17000
+De Haan er salary is 17000
+Hunold er salary is 9000
+Ernst er salary is 6000
+Austin er salary is 4800
+Pataballa er salary is 4800
+Lorentz er salary is 4200
+Greenberg er salary is 12000
+Faviet er salary is 9000
+Chen er salary is 8200
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Sciarra er salary is 7700
+Urman er salary is 7800
+Popp er salary is 6900
+Raphaely er salary is 11000
+Khoo er salary is 3100
+Baida er salary is 2900
+Tobias er salary is 2800
+Himuro er salary is 2600
+Colmenares er salary is 2500
+Weiss er salary is 8000
+Fripp er salary is 8200
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Kaufling er salary is 7900
+Vollman er salary is 6500
+Mourgos er salary is 5800
+Nayer er salary is 3200
+Mikkilineni er salary is 2700
+Landry er salary is 2400
+Markle er salary is 2200
+Bissot er salary is 3300
+Atkinson er salary is 2800
+Marlow er salary is 2500
+Olson er salary is 2100
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Mallin er salary is 3300
+Rogers er salary is 2900
+Gee er salary is 2400
+Philtanker er salary is 2200
+Ladwig er salary is 3600
+Stiles er salary is 3200
+Seo er salary is 2700
+Patel er salary is 2500
+Rajs er salary is 3500
+Davies er salary is 3100
+Matos er salary is 2600
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Vargas er salary is 2500
+Russell er salary is 14000
+Partners er salary is 13500
+Errazuriz er salary is 12000
+Cambrault er salary is 11000
+Zlotkey er salary is 10500
+Tucker er salary is 10000
+Bernstein er salary is 9500
+Hall er salary is 9000
+Olsen er salary is 8000
+Cambrault er salary is 7500
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Tuvault er salary is 7000
+King er salary is 10000
+Sully er salary is 9500
+McEwen er salary is 9000
+Smith er salary is 8000
+Doran er salary is 7500
+Sewall er salary is 7000
+Vishney er salary is 10500
+Greene er salary is 9500
+Marvins er salary is 7200
+Lee er salary is 6800
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Ande er salary is 6400
+Banda er salary is 6200
+Ozer er salary is 11500
+Bloom er salary is 10000
+Fox er salary is 9600
+Smith er salary is 7400
+Bates er salary is 7300
+Kumar er salary is 6100
+Abel er salary is 11000
+Hutton er salary is 8800
+Taylor er salary is 8600
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Livingston er salary is 8400
+Grant er salary is 7000
+Johnson er salary is 6200
+Taylor er salary is 3200
+Fleaur er salary is 3100
+Sullivan er salary is 2500
+Geoni er salary is 2800
+Sarchand er salary is 4200
+Bull er salary is 4100
+Dellinger er salary is 3400
+Cabrio er salary is 3000
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Chung er salary is 3800
+Dilly er salary is 3600
+Gates er salary is 2900
+Perkins er salary is 2500
+Bell er salary is 4000
+Everett er salary is 3900
+McCain er salary is 3200
+Jones er salary is 2800
+Walsh er salary is 3100
+Feeney er salary is 3000
+OConnell er salary is 2600
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Grant er salary is 2600
+Whalen er salary is 4400
+Hartstein er salary is 13000
+Fay er salary is 6000
+Mavris er salary is 6500
+Baer er salary is 10000
+Higgins er salary is 12000
+Gietz er salary is 8300
+
+107 rows selected.
+
+SQL> select last_name || q'['s salary is ]' || salary from employees;
+
+LAST_NAME||Q'['SSALARYIS]'||SALARY
+------------------------------------------------------------------------------
+King's salary is 24000
+Kochhar's salary is 17000
+De Haan's salary is 17000
+Hunold's salary is 9000
+Ernst's salary is 6000
+Austin's salary is 4800
+Pataballa's salary is 4800
+Lorentz's salary is 4200
+Greenberg's salary is 12000
+Faviet's salary is 9000
+Chen's salary is 8200
+
+LAST_NAME||Q'['SSALARYIS]'||SALARY
+------------------------------------------------------------------------------
+Sciarra's salary is 7700
+Urman's salary is 7800
+Popp's salary is 6900
+Raphaely's salary is 11000
+Khoo's salary is 3100
+Baida's salary is 2900
+Tobias's salary is 2800
+Himuro's salary is 2600
+Colmenares's salary is 2500
+Weiss's salary is 8000
+Fripp's salary is 8200
+
+LAST_NAME||Q'['SSALARYIS]'||SALARY
+------------------------------------------------------------------------------
+Kaufling's salary is 7900
+Vollman's salary is 6500
+Mourgos's salary is 5800
+Nayer's salary is 3200
+Mikkilineni's salary is 2700
+Landry's salary is 2400
+Markle's salary is 2200
+Bissot's salary is 3300
+Atkinson's salary is 2800
+Marlow's salary is 2500
+Olson's salary is 2100
+
+LAST_NAME||Q'['SSALARYIS]'||SALARY
+------------------------------------------------------------------------------
+Mallin's salary is 3300
+Rogers's salary is 2900
+Gee's salary is 2400
+Philtanker's salary is 2200
+Ladwig's salary is 3600
+Stiles's salary is 3200
+Seo's salary is 2700
+Patel's salary is 2500
+Rajs's salary is 3500
+Davies's salary is 3100
+Matos's salary is 2600
+
+LAST_NAME||Q'['SSALARYIS]'||SALARY
+------------------------------------------------------------------------------
+Vargas's salary is 2500
+Russell's salary is 14000
+Partners's salary is 13500
+Errazuriz's salary is 12000
+Cambrault's salary is 11000
+Zlotkey's salary is 10500
+Tucker's salary is 10000
+Bernstein's salary is 9500
+Hall's salary is 9000
+Olsen's salary is 8000
+Cambrault's salary is 7500
+
+LAST_NAME||Q'['SSALARYIS]'||SALARY
+------------------------------------------------------------------------------
+Tuvault's salary is 7000
+King's salary is 10000
+Sully's salary is 9500
+McEwen's salary is 9000
+Smith's salary is 8000
+Doran's salary is 7500
+Sewall's salary is 7000
+Vishney's salary is 10500
+Greene's salary is 9500
+Marvins's salary is 7200
+Lee's salary is 6800
+
+LAST_NAME||Q'['SSALARYIS]'||SALARY
+------------------------------------------------------------------------------
+Ande's salary is 6400
+Banda's salary is 6200
+Ozer's salary is 11500
+Bloom's salary is 10000
+Fox's salary is 9600
+Smith's salary is 7400
+Bates's salary is 7300
+Kumar's salary is 6100
+Abel's salary is 11000
+Hutton's salary is 8800
+Taylor's salary is 8600
+
+LAST_NAME||Q'['SSALARYIS]'||SALARY
+------------------------------------------------------------------------------
+Livingston's salary is 8400
+Grant's salary is 7000
+Johnson's salary is 6200
+Taylor's salary is 3200
+Fleaur's salary is 3100
+Sullivan's salary is 2500
+Geoni's salary is 2800
+Sarchand's salary is 4200
+Bull's salary is 4100
+Dellinger's salary is 3400
+Cabrio's salary is 3000
+
+LAST_NAME||Q'['SSALARYIS]'||SALARY
+------------------------------------------------------------------------------
+Chung's salary is 3800
+Dilly's salary is 3600
+Gates's salary is 2900
+Perkins's salary is 2500
+Bell's salary is 4000
+Everett's salary is 3900
+McCain's salary is 3200
+Jones's salary is 2800
+Walsh's salary is 3100
+Feeney's salary is 3000
+OConnell's salary is 2600
+
+LAST_NAME||Q'['SSALARYIS]'||SALARY
+------------------------------------------------------------------------------
+Grant's salary is 2600
+Whalen's salary is 4400
+Hartstein's salary is 13000
+Fay's salary is 6000
+Mavris's salary is 6500
+Baer's salary is 10000
+Higgins's salary is 12000
+Gietz's salary is 8300
+
+107 rows selected.
+
+SQL> select last_name || q'['s salary is ]' || salary as "Employees" yfrom employees;
+select last_name || q'['s salary is ]' || salary as "Employees" yfrom employees
+                                                                *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select last_name || q'['s salary is ]' || salary as "Employees" from employees;
+
+Employees
+------------------------------------------------------------------------------
+King's salary is 24000
+Kochhar's salary is 17000
+De Haan's salary is 17000
+Hunold's salary is 9000
+Ernst's salary is 6000
+Austin's salary is 4800
+Pataballa's salary is 4800
+Lorentz's salary is 4200
+Greenberg's salary is 12000
+Faviet's salary is 9000
+Chen's salary is 8200
+
+Employees
+------------------------------------------------------------------------------
+Sciarra's salary is 7700
+Urman's salary is 7800
+Popp's salary is 6900
+Raphaely's salary is 11000
+Khoo's salary is 3100
+Baida's salary is 2900
+Tobias's salary is 2800
+Himuro's salary is 2600
+Colmenares's salary is 2500
+Weiss's salary is 8000
+Fripp's salary is 8200
+
+Employees
+------------------------------------------------------------------------------
+Kaufling's salary is 7900
+Vollman's salary is 6500
+Mourgos's salary is 5800
+Nayer's salary is 3200
+Mikkilineni's salary is 2700
+Landry's salary is 2400
+Markle's salary is 2200
+Bissot's salary is 3300
+Atkinson's salary is 2800
+Marlow's salary is 2500
+Olson's salary is 2100
+
+Employees
+------------------------------------------------------------------------------
+Mallin's salary is 3300
+Rogers's salary is 2900
+Gee's salary is 2400
+Philtanker's salary is 2200
+Ladwig's salary is 3600
+Stiles's salary is 3200
+Seo's salary is 2700
+Patel's salary is 2500
+Rajs's salary is 3500
+Davies's salary is 3100
+Matos's salary is 2600
+
+Employees
+------------------------------------------------------------------------------
+Vargas's salary is 2500
+Russell's salary is 14000
+Partners's salary is 13500
+Errazuriz's salary is 12000
+Cambrault's salary is 11000
+Zlotkey's salary is 10500
+Tucker's salary is 10000
+Bernstein's salary is 9500
+Hall's salary is 9000
+Olsen's salary is 8000
+Cambrault's salary is 7500
+
+Employees
+------------------------------------------------------------------------------
+Tuvault's salary is 7000
+King's salary is 10000
+Sully's salary is 9500
+McEwen's salary is 9000
+Smith's salary is 8000
+Doran's salary is 7500
+Sewall's salary is 7000
+Vishney's salary is 10500
+Greene's salary is 9500
+Marvins's salary is 7200
+Lee's salary is 6800
+
+Employees
+------------------------------------------------------------------------------
+Ande's salary is 6400
+Banda's salary is 6200
+Ozer's salary is 11500
+Bloom's salary is 10000
+Fox's salary is 9600
+Smith's salary is 7400
+Bates's salary is 7300
+Kumar's salary is 6100
+Abel's salary is 11000
+Hutton's salary is 8800
+Taylor's salary is 8600
+
+Employees
+------------------------------------------------------------------------------
+Livingston's salary is 8400
+Grant's salary is 7000
+Johnson's salary is 6200
+Taylor's salary is 3200
+Fleaur's salary is 3100
+Sullivan's salary is 2500
+Geoni's salary is 2800
+Sarchand's salary is 4200
+Bull's salary is 4100
+Dellinger's salary is 3400
+Cabrio's salary is 3000
+
+Employees
+------------------------------------------------------------------------------
+Chung's salary is 3800
+Dilly's salary is 3600
+Gates's salary is 2900
+Perkins's salary is 2500
+Bell's salary is 4000
+Everett's salary is 3900
+McCain's salary is 3200
+Jones's salary is 2800
+Walsh's salary is 3100
+Feeney's salary is 3000
+OConnell's salary is 2600
+
+Employees
+------------------------------------------------------------------------------
+Grant's salary is 2600
+Whalen's salary is 4400
+Hartstein's salary is 13000
+Fay's salary is 6000
+Mavris's salary is 6500
+Baer's salary is 10000
+Higgins's salary is 12000
+Gietz's salary is 8300
+
+107 rows selected.
+
+SQL> @E:\A\d.sql;
+
+Employees
+------------------------------------------------------------------------------
+King's salary is 24000
+Kochhar's salary is 17000
+De Haan's salary is 17000
+Hunold's salary is 9000
+Ernst's salary is 6000
+Austin's salary is 4800
+Pataballa's salary is 4800
+Lorentz's salary is 4200
+Greenberg's salary is 12000
+Faviet's salary is 9000
+Chen's salary is 8200
+
+Employees
+------------------------------------------------------------------------------
+Sciarra's salary is 7700
+Urman's salary is 7800
+Popp's salary is 6900
+Raphaely's salary is 11000
+Khoo's salary is 3100
+Baida's salary is 2900
+Tobias's salary is 2800
+Himuro's salary is 2600
+Colmenares's salary is 2500
+Weiss's salary is 8000
+Fripp's salary is 8200
+
+Employees
+------------------------------------------------------------------------------
+Kaufling's salary is 7900
+Vollman's salary is 6500
+Mourgos's salary is 5800
+Nayer's salary is 3200
+Mikkilineni's salary is 2700
+Landry's salary is 2400
+Markle's salary is 2200
+Bissot's salary is 3300
+Atkinson's salary is 2800
+Marlow's salary is 2500
+Olson's salary is 2100
+
+Employees
+------------------------------------------------------------------------------
+Mallin's salary is 3300
+Rogers's salary is 2900
+Gee's salary is 2400
+Philtanker's salary is 2200
+Ladwig's salary is 3600
+Stiles's salary is 3200
+Seo's salary is 2700
+Patel's salary is 2500
+Rajs's salary is 3500
+Davies's salary is 3100
+Matos's salary is 2600
+
+Employees
+------------------------------------------------------------------------------
+Vargas's salary is 2500
+Russell's salary is 14000
+Partners's salary is 13500
+Errazuriz's salary is 12000
+Cambrault's salary is 11000
+Zlotkey's salary is 10500
+Tucker's salary is 10000
+Bernstein's salary is 9500
+Hall's salary is 9000
+Olsen's salary is 8000
+Cambrault's salary is 7500
+
+Employees
+------------------------------------------------------------------------------
+Tuvault's salary is 7000
+King's salary is 10000
+Sully's salary is 9500
+McEwen's salary is 9000
+Smith's salary is 8000
+Doran's salary is 7500
+Sewall's salary is 7000
+Vishney's salary is 10500
+Greene's salary is 9500
+Marvins's salary is 7200
+Lee's salary is 6800
+
+Employees
+------------------------------------------------------------------------------
+Ande's salary is 6400
+Banda's salary is 6200
+Ozer's salary is 11500
+Bloom's salary is 10000
+Fox's salary is 9600
+Smith's salary is 7400
+Bates's salary is 7300
+Kumar's salary is 6100
+Abel's salary is 11000
+Hutton's salary is 8800
+Taylor's salary is 8600
+
+Employees
+------------------------------------------------------------------------------
+Livingston's salary is 8400
+Grant's salary is 7000
+Johnson's salary is 6200
+Taylor's salary is 3200
+Fleaur's salary is 3100
+Sullivan's salary is 2500
+Geoni's salary is 2800
+Sarchand's salary is 4200
+Bull's salary is 4100
+Dellinger's salary is 3400
+Cabrio's salary is 3000
+
+Employees
+------------------------------------------------------------------------------
+Chung's salary is 3800
+Dilly's salary is 3600
+Gates's salary is 2900
+Perkins's salary is 2500
+Bell's salary is 4000
+Everett's salary is 3900
+McCain's salary is 3200
+Jones's salary is 2800
+Walsh's salary is 3100
+Feeney's salary is 3000
+OConnell's salary is 2600
+
+Employees
+------------------------------------------------------------------------------
+Grant's salary is 2600
+Whalen's salary is 4400
+Hartstein's salary is 13000
+Fay's salary is 6000
+Mavris's salary is 6500
+Baer's salary is 10000
+Higgins's salary is 12000
+Gietz's salary is 8300
+
+107 rows selected.
+
+SQL> @E:\A\d.sql;
+
+Employees
+------------------------------------------------------------------------------
+King's salary is 24000
+Kochhar's salary is 17000
+De Haan's salary is 17000
+Hunold's salary is 9000
+Ernst's salary is 6000
+Austin's salary is 4800
+Pataballa's salary is 4800
+Lorentz's salary is 4200
+Greenberg's salary is 12000
+Faviet's salary is 9000
+Chen's salary is 8200
+
+Employees
+------------------------------------------------------------------------------
+Sciarra's salary is 7700
+Urman's salary is 7800
+Popp's salary is 6900
+Raphaely's salary is 11000
+Khoo's salary is 3100
+Baida's salary is 2900
+Tobias's salary is 2800
+Himuro's salary is 2600
+Colmenares's salary is 2500
+Weiss's salary is 8000
+Fripp's salary is 8200
+
+Employees
+------------------------------------------------------------------------------
+Kaufling's salary is 7900
+Vollman's salary is 6500
+Mourgos's salary is 5800
+Nayer's salary is 3200
+Mikkilineni's salary is 2700
+Landry's salary is 2400
+Markle's salary is 2200
+Bissot's salary is 3300
+Atkinson's salary is 2800
+Marlow's salary is 2500
+Olson's salary is 2100
+
+Employees
+------------------------------------------------------------------------------
+Mallin's salary is 3300
+Rogers's salary is 2900
+Gee's salary is 2400
+Philtanker's salary is 2200
+Ladwig's salary is 3600
+Stiles's salary is 3200
+Seo's salary is 2700
+Patel's salary is 2500
+Rajs's salary is 3500
+Davies's salary is 3100
+Matos's salary is 2600
+
+Employees
+------------------------------------------------------------------------------
+Vargas's salary is 2500
+Russell's salary is 14000
+Partners's salary is 13500
+Errazuriz's salary is 12000
+Cambrault's salary is 11000
+Zlotkey's salary is 10500
+Tucker's salary is 10000
+Bernstein's salary is 9500
+Hall's salary is 9000
+Olsen's salary is 8000
+Cambrault's salary is 7500
+
+Employees
+------------------------------------------------------------------------------
+Tuvault's salary is 7000
+King's salary is 10000
+Sully's salary is 9500
+McEwen's salary is 9000
+Smith's salary is 8000
+Doran's salary is 7500
+Sewall's salary is 7000
+Vishney's salary is 10500
+Greene's salary is 9500
+Marvins's salary is 7200
+Lee's salary is 6800
+
+Employees
+------------------------------------------------------------------------------
+Ande's salary is 6400
+Banda's salary is 6200
+Ozer's salary is 11500
+Bloom's salary is 10000
+Fox's salary is 9600
+Smith's salary is 7400
+Bates's salary is 7300
+Kumar's salary is 6100
+Abel's salary is 11000
+Hutton's salary is 8800
+Taylor's salary is 8600
+
+Employees
+------------------------------------------------------------------------------
+Livingston's salary is 8400
+Grant's salary is 7000
+Johnson's salary is 6200
+Taylor's salary is 3200
+Fleaur's salary is 3100
+Sullivan's salary is 2500
+Geoni's salary is 2800
+Sarchand's salary is 4200
+Bull's salary is 4100
+Dellinger's salary is 3400
+Cabrio's salary is 3000
+
+Employees
+------------------------------------------------------------------------------
+Chung's salary is 3800
+Dilly's salary is 3600
+Gates's salary is 2900
+Perkins's salary is 2500
+Bell's salary is 4000
+Everett's salary is 3900
+McCain's salary is 3200
+Jones's salary is 2800
+Walsh's salary is 3100
+Feeney's salary is 3000
+OConnell's salary is 2600
+
+Employees
+------------------------------------------------------------------------------
+Grant's salary is 2600
+Whalen's salary is 4400
+Hartstein's salary is 13000
+Fay's salary is 6000
+Mavris's salary is 6500
+Baer's salary is 10000
+Higgins's salary is 12000
+Gietz's salary is 8300
+
+107 rows selected.
+
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+King er salary is 24000
+Kochhar er salary is 17000
+De Haan er salary is 17000
+Hunold er salary is 9000
+Ernst er salary is 6000
+Austin er salary is 4800
+Pataballa er salary is 4800
+Lorentz er salary is 4200
+Greenberg er salary is 12000
+Faviet er salary is 9000
+Chen er salary is 8200
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Sciarra er salary is 7700
+Urman er salary is 7800
+Popp er salary is 6900
+Raphaely er salary is 11000
+Khoo er salary is 3100
+Baida er salary is 2900
+Tobias er salary is 2800
+Himuro er salary is 2600
+Colmenares er salary is 2500
+Weiss er salary is 8000
+Fripp er salary is 8200
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Kaufling er salary is 7900
+Vollman er salary is 6500
+Mourgos er salary is 5800
+Nayer er salary is 3200
+Mikkilineni er salary is 2700
+Landry er salary is 2400
+Markle er salary is 2200
+Bissot er salary is 3300
+Atkinson er salary is 2800
+Marlow er salary is 2500
+Olson er salary is 2100
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Mallin er salary is 3300
+Rogers er salary is 2900
+Gee er salary is 2400
+Philtanker er salary is 2200
+Ladwig er salary is 3600
+Stiles er salary is 3200
+Seo er salary is 2700
+Patel er salary is 2500
+Rajs er salary is 3500
+Davies er salary is 3100
+Matos er salary is 2600
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Vargas er salary is 2500
+Russell er salary is 14000
+Partners er salary is 13500
+Errazuriz er salary is 12000
+Cambrault er salary is 11000
+Zlotkey er salary is 10500
+Tucker er salary is 10000
+Bernstein er salary is 9500
+Hall er salary is 9000
+Olsen er salary is 8000
+Cambrault er salary is 7500
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Tuvault er salary is 7000
+King er salary is 10000
+Sully er salary is 9500
+McEwen er salary is 9000
+Smith er salary is 8000
+Doran er salary is 7500
+Sewall er salary is 7000
+Vishney er salary is 10500
+Greene er salary is 9500
+Marvins er salary is 7200
+Lee er salary is 6800
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Ande er salary is 6400
+Banda er salary is 6200
+Ozer er salary is 11500
+Bloom er salary is 10000
+Fox er salary is 9600
+Smith er salary is 7400
+Bates er salary is 7300
+Kumar er salary is 6100
+Abel er salary is 11000
+Hutton er salary is 8800
+Taylor er salary is 8600
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Livingston er salary is 8400
+Grant er salary is 7000
+Johnson er salary is 6200
+Taylor er salary is 3200
+Fleaur er salary is 3100
+Sullivan er salary is 2500
+Geoni er salary is 2800
+Sarchand er salary is 4200
+Bull er salary is 4100
+Dellinger er salary is 3400
+Cabrio er salary is 3000
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Chung er salary is 3800
+Dilly er salary is 3600
+Gates er salary is 2900
+Perkins er salary is 2500
+Bell er salary is 4000
+Everett er salary is 3900
+McCain er salary is 3200
+Jones er salary is 2800
+Walsh er salary is 3100
+Feeney er salary is 3000
+OConnell er salary is 2600
+
+LAST_NAME||'ERSALARYIS'||SALARY
+-------------------------------------------------------------------------------
+Grant er salary is 2600
+Whalen er salary is 4400
+Hartstein er salary is 13000
+Fay er salary is 6000
+Mavris er salary is 6500
+Baer er salary is 10000
+Higgins er salary is 12000
+Gietz er salary is 8300
+
+107 rows selected.
+
+SQL>
